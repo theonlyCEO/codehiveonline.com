@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Codehive Online – Portfolio</title>
+  <link rel="shortcut icon" href="./images/logo3.png" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1f3c;
+      --blue: #1a73e8;
+      --blue-dark: #1558b0;
+      --blue-light: #e8f0fb;
+      --text: #1a1a2e;
+      --muted: #4a5568;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-alt: #f8fafd;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      position: relative;
+      z-index: 100;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+    .logo-img-placeholder {
+      width: 65px;
+      height: 50px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; color: var(--blue); font-weight: 700;
+      text-align: center; flex-shrink: 0;
+    }
+
+    .logo-text h2 { font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+    .logo-text p  { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 600; color: var(--muted);
+      position: relative; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { color: var(--blue); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--blue); border-radius: 2px;
+    }
+
+    .btn-primary {
+      background: var(--blue); color: #fff; border: none;
+      padding: 11px 24px; border-radius: 6px; font-size: 14px;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+
+    /* Mobile menu toggle - positioned on the left */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--navy);
+      padding: 8px;
+      z-index: 101;
+      order: -1;
+      margin-right: 12px;
+    }
+
+    /* ── PORTFOLIO HEADER ── */
+    .portfolio-header {
+      text-align: center;
+      padding: 56px 48px 12px;
+    }
+
+    .portfolio-header h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .portfolio-header h1 span {
+      color: var(--blue);
+    }
+
+    .portfolio-header p {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── PORTFOLIO CARDS ── */
+    .portfolio-section {
+      padding: 40px 48px 16px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .portfolio-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .portfolio-card:hover {
+      box-shadow: 0 10px 36px rgba(13,31,60,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Project image - make it clickable */
+    .project-img {
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+      background: #dce6f5;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .project-img:hover {
+      opacity: 0.9;
+    }
+    .project-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .project-img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #c8d8f0 0%, #dce6f5 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; color: var(--blue);
+      font-size: 9px; font-weight: 700;
+    }
+    .project-img-placeholder svg {
+      width: 32px; height: 32px;
+      stroke: var(--blue); fill: none; opacity: 0.4;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* Card body */
+    .project-body {
+      padding: 22px 22px 24px;
+    }
+
+    .project-body h3 {
+      font-size: 17px; font-weight: 800; color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .project-tag {
+      font-size: 12px; font-weight: 700; color: var(--blue);
+      margin-bottom: 14px; display: block;
+    }
+
+    .project-divider {
+      border: none; border-top: 1px solid var(--border); margin-bottom: 14px;
+    }
+
+    .project-features {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 7px; margin-bottom: 16px;
+    }
+    .project-features li {
+      font-size: 12.5px; color: var(--text); font-weight: 500;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .project-features li::before {
+      content: '';
+      width: 17px; height: 17px; flex-shrink: 0;
+      background: var(--blue-light); border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17' fill='none' stroke='%231a73e8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6.5-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center; background-size: 11px;
+    }
+
+    .project-status {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .status-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #22c55e; flex-shrink: 0;
+    }
+
+    .status-label { color: #22c55e; }
+
+    .btn-project {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: 1.5px solid var(--border);
+      color: var(--navy); padding: 9px 18px; border-radius: 7px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      font-family: inherit; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-project:hover {
+      border-color: var(--blue); color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* ── MORE PROJECTS BANNER ── */
+    .more-projects {
+      max-width: 1000px;
+      margin: 28px auto 0;
+      padding: 0 48px;
+    }
+
+    .more-projects-inner {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .more-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .more-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--muted); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .more-text h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
+    .more-text p  { font-size: 13px; color: var(--muted); font-weight: 500; line-height: 1.55; }
+
+    /* ── WHAT CLIENTS SAY ── */
+    .testimonials {
+      padding: 56px 48px 48px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+
+    .testimonials h2 {
+      font-size: 28px; font-weight: 800; color: var(--navy); margin-bottom: 10px;
+    }
+
+    .testimonials .subtitle {
+      font-size: 13.5px; color: var(--muted); font-weight: 500; margin-bottom: 32px;
+    }
+
+    .quote-icon {
+      width: 48px; height: 48px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto;
+    }
+
+    .quote-icon svg {
+      width: 22px; height: 22px; fill: var(--blue);
+    }
+
+    /* ── LIGHTBOX MODAL (FULLSCREEN IMAGE VIEW) ── */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 31, 60, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.25s ease;
+      cursor: pointer;
+    }
+
+    .lightbox-modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: scaleUp 0.2s ease;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 20px;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+      border: 3px solid rgba(255,255,255,0.2);
+      background: #111;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      margin-top: 20px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      padding: 10px 24px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border: none;
+      font-size: 30px;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-lightbox:hover {
+      background: var(--blue);
+      transform: scale(1.02);
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1f3c; color: #fff; padding: 56px 64px 0;
+      margin-top: 0;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 200px 140px 200px 240px 160px;
+      gap: 32px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand h2 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .footer-brand .tagline { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 20px; }
+    .footer-brand .quote { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+    .footer-brand .quote-link { color: #4d9cff; text-decoration: none; font-weight: 600; }
+
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul li a {
+      font-size: 12.5px; color: rgba(255,255,255,0.55);
+      text-decoration: none; font-weight: 500; transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-list li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 500;
+    }
+    .contact-icon {
+      width: 30px; height: 30px; background: rgba(255,255,255,0.08);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-icon svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.65); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .social-icons { display: flex; gap: 8px; margin-top: 4px; }
+    .social-btn {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,0.1); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--blue); }
+    .social-btn svg { width: 15px; height: 15px; fill: #fff; }
+
+    .footer-bottom {
+      text-align: center; padding: 18px 0;
+      font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 500;
+    }
+
+    /* ── RESPONSIVE STYLES ── */
+    @media (max-width: 1024px) {
+      .portfolio-header { padding: 48px 32px 12px; }
+      .portfolio-section { padding: 32px 32px 16px; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { padding: 48px 32px 0; }
+      .footer-top { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { 
+        padding: 0 24px; 
+        justify-content: flex-start;
+      }
+      .menu-toggle { 
+        display: block; 
+        order: -1;
+      }
+      .nav-logo {
+        order: 0;
+        margin-right: auto;
+      }
+      .nav-links {
+        position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+        background: #fff; flex-direction: column; gap: 24px;
+        padding: 32px 24px; border-bottom: 1px solid var(--border);
+        display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        overflow-y: auto; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 16px; }
+      .btn-primary { 
+        font-size: 13px; padding: 10px 20px; 
+        order: 1;
+        margin-left: auto;
+      }
+      
+      .portfolio-header h1 { font-size: 32px; }
+      .portfolio-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .more-projects { padding: 0 24px; }
+      .more-projects-inner { flex-direction: column; text-align: center; padding: 24px; }
+      .testimonials { padding: 40px 24px 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 16px; }
+      .logo-text h2 { font-size: 13px; }
+      .logo-text p { font-size: 10px; }
+      .btn-primary { padding: 8px 16px; font-size: 12px; }
+      
+      .portfolio-header { padding: 40px 16px 8px; }
+      .portfolio-header h1 { font-size: 28px; }
+      .portfolio-section { padding: 24px 16px 16px; }
+      .more-projects { padding: 0 16px; }
+      .testimonials { padding: 32px 16px 32px; }
+      .testimonials h2 { font-size: 24px; }
+      
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      footer { padding: 40px 24px 0; }
+    }
+    a {
+      text-decoration: none;
+      color: whitesmoke;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <a href="index.html" class="nav-logo">
+      <div class="logo-img-placeholder"><img class="logo-img-placeholder" src="./images/logo3.png" alt=""></div>
+      <div class="logo-text">
+        <h2>Codehive Online</h2>
+        <p>Your Business, Online.</p>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./service.html">Services</a></li>
+      <li><a href="./industries.html">Industries</a></li>
+      <li><a href="./portfolio.html">Portfolio</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+   <button class="btn-primary" id="startProjectBtn"><a href="./contact.html">Start a Project</a> </button>
+  </nav>
+
+  <!-- PORTFOLIO HEADER -->
+  <div class="portfolio-header">
+    <h1><span>Our</span> Portfolio</h1>
+    <p>Real projects. Real impact.</p>
+  </div>
+
+  <!-- PORTFOLIO CARDS -->
+  <section class="portfolio-section">
+    <div class="portfolio-grid">
+
+      <!-- Diversity High School -->
+      <div class="portfolio-card">
+        <div class="project-img" data-img-src="./images/code.png" data-img-title="Diversity High School">
+          <div class="project-img-placeholder">
+            <img src="./images/code.png" alt="Diversity High School project">
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Our Work</h3>
+          <span class="project-tag">Education</span>
+          <hr class="project-divider"/>
+          <ul class="project-features">
+            <li>all Website Design</li>
+            <li>deploy</li>
+            <li>hosting</li>
+          </ul>
+          <div class="project-status">
+            <span class="status-dot"></span>
+            Status: <span class="status-label">&nbsp;Concept Complete</span>
+          </div>
+          <a  href="./gallery.html" class="btn-project " >View Project &nbsp;→</a>
+        </div>
+      </div>
+
+      <!-- BTS Logistics -->
+      <div class="portfolio-card">
+        <div class="project-img" data-img-src="./images/bts.png" data-img-title="BTS Logistics">
+          <div class="project-img-placeholder">
+            <img src="./images/bts.png" alt="BTS Logistics project">
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>BTS Logistics</h3>
+          <span class="project-tag">Logistics</span>
+          <hr class="project-divider"/>
+          <ul class="project-features">
+            <li>Website Development</li>
+            <li>Quote System</li>
+            <li>Lead Generation</li>
+          </ul>
+          <div class="project-status">
+            <span class="status-dot"></span>
+            Status: <span class="status-label">&nbsp;Concept Complete</span>
+          </div>
+          <a href="https://berdi-transport-service-co-za.vercel.app/" class="btn-project view-project-btn" data-project-url="https://berdi-transport-service-co-za.vercel.app/" data-project-name="BTS Logistics" target="_blank">View Project &nbsp;→</a>
+        </div>
+      </div>
+
+      <!-- FES Electrical -->
+      <div class="portfolio-card">
+        <div class="project-img" data-img-src="" data-img-title="FES Electrical">
+          <div class="project-img-placeholder">
+            <img src="./images/fes.png" alt="">
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>FES Electrical</h3>
+          <span class="project-tag">Electrical &amp; Energy</span>
+          <hr class="project-divider"/>
+          <ul class="project-features">
+            <li>Website Development</li>
+            <li>Project Gallery</li>
+            <li>Lead Generation</li>
+          </ul>
+          <div class="project-status">
+            <span class="status-dot"></span>
+            Status: <span class="status-label">&nbsp;Concept Complete</span>
+          </div>
+          <a href="https://frad-electrical-service.vercel.app/" class="btn-project view-project-btn" data-project-url="https://frad-electrical-service.vercel.app/" data-project-name="FES Electrical">View Project &nbsp;→</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MORE PROJECTS COMING SOON -->
+  <div class="more-projects">
+    <div class="more-projects-inner">
+      <div class="more-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="more-text">
+        <h3>More Projects Coming Soon</h3>
+        <p>We are always working on new projects.<br>Check back soon to see our latest work.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT CLIENTS SAY -->
+  <section class="testimonials">
+    <h2>What Clients Say</h2>
+    <p class="subtitle">Client testimonials will be added here as we grow together.</p>
+    <div class="quote-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL (FULLSCREEN IMAGE VIEW) -->
+  <div id="lightboxModal" class="lightbox-modal">
+    <button class="close-lightbox" id="closeLightboxBtn">✕</button>
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="full preview">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+
+      <div class="footer-brand footer-col">
+        <h2>Codehive Online</h2>
+        <p class="tagline">Your Business, Online.</p>
+        <p class="quote">Don't make noise in the streets,<br>make noise <a href="#" class="quote-link">online</a>.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./service.html">Services</a></li>
+          <li><a href="./industries.html">Industries</a></li>
+          <li><a href="./portfolio.html">Portfolio</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Website Development</a></li>
+          <li><a href="#">Website Maintenance</a></li>
+          <li><a href="#">Business Branding</a></li>
+          <li><a href="#">Digital Management</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul class="contact-list">
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            codehiveonline@gmail.com
+          </li>
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+            </div>
+            +27 75 485 5409
+          </li>
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            South Africa
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#fff" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">&copy; 2025 Codehive Online. All Rights Reserved.</div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    (function() {
+      // DOM elements
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const startProjectBtn = document.getElementById('startProjectBtn');
+
+      // ─── NAVBAR PAGE HIGHLIGHTING ───
+      function highlightCurrentPage() {
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1).toLowerCase();
+        
+        const allNavLinks = document.querySelectorAll('.nav-links a');
+        
+        allNavLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        allNavLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href) {
+            const linkPage = href.substring(href.lastIndexOf('/') + 1).toLowerCase();
+            
+            if (currentPage === linkPage ||
+                (currentPage === '' && (linkPage === 'index.html' || linkPage === 'index')) ||
+                (currentPage === 'portfolio' && linkPage === 'portfolio') ||
+                (currentPage === 'portfolio.html' && (linkPage === 'portfolio' || linkPage === 'portfolio.html')) ||
+                (currentPage === 'service' && linkPage === 'service.html') ||
+                (currentPage === 'service.html' && linkPage === 'service.html') ||
+                (currentPage === 'industries' && linkPage === 'industries') ||
+                (currentPage === 'industries.html' && linkPage === 'industries') ||
+                (currentPage === 'contact' && linkPage === 'contact') ||
+                (currentPage === 'contact.html' && linkPage === 'contact')) {
+              link.classList.add('active');
+            }
+          }
+        });
+        
+        const activeLink = document.querySelector('.nav-links a.active');
+        if (!activeLink) {
+          if (currentPage.includes('portfolio')) {
+            const portfolioLink = document.querySelector('.nav-links a[href="./portfolio"]') || 
+                                  document.querySelector('.nav-links a[href="portfolio"]');
+            if (portfolioLink) {
+              portfolioLink.classList.add('active');
+            }
+          } else {
+            const homeLink = document.querySelector('.nav-links a[href="./index.html"]') || 
+                            document.querySelector('.nav-links a[href="index.html"]');
+            if (homeLink) {
+              homeLink.classList.add('active');
+            }
+          }
+        }
+      }
+      
+      highlightCurrentPage();
+
+      // ─── RESPONSIVE MOBILE MENU ───
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          navLinks.classList.toggle('open');
+          updateMenuIcon();
+        });
+
+        const navLinkItems = navLinks.querySelectorAll('a');
+        navLinkItems.forEach(link => {
+          link.addEventListener('click', function() {
+            navLinks.classList.remove('open');
+            updateMenuIcon();
+          });
+        });
+
+        document.addEventListener('click', function(event) {
+          if (!navLinks.contains(event.target) && event.target !== menuToggle) {
+            navLinks.classList.remove('open');
+            updateMenuIcon();
+          }
+        });
+
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            updateMenuIcon();
+          }
+        });
+
+        function updateMenuIcon() {
+          if (navLinks.classList.contains('open')) {
+            menuToggle.innerHTML = '✕';
+            menuToggle.setAttribute('aria-label', 'Close menu');
+          } else {
+            menuToggle.innerHTML = '☰';
+            menuToggle.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      // ─── START PROJECT BUTTON ───
+      if (startProjectBtn) {
+        startProjectBtn.addEventListener('click', function() {
+          alert('Project request feature coming soon! Contact us at codehiveonline@gmail.com');
+        });
+      }
+
+      // ─── LIGHTBOX FUNCTIONALITY (click on image to view fullscreen) ───
+      const lightbox = document.getElementById('lightboxModal');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const closeLightboxBtn = document.getElementById('closeLightboxBtn');
+
+      function openLightbox(imgSrc, imgTitle) {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = imgSrc;
+        lightboxCaption.innerText = imgTitle || 'Project Preview';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        if (lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+          setTimeout(() => { if(lightboxImg) lightboxImg.src = ''; }, 200);
+        }
+      }
+
+      if (closeLightboxBtn) {
+        closeLightboxBtn.addEventListener('click', closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+          }
+        });
+      }
+
+      // Attach click handlers to all project images
+      const projectImages = document.querySelectorAll('.project-img');
+      projectImages.forEach(imgContainer => {
+        imgContainer.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const imgSrc = this.getAttribute('data-img-src');
+          const imgTitle = this.getAttribute('data-img-title') || 'Project Image';
+          if (imgSrc && imgSrc.trim() !== '') {
+            openLightbox(imgSrc, imgTitle);
+          } else {
+            alert('Image preview coming soon for this project.');
+          }
+        });
+      });
+
+      // ─── VIEW PROJECT BUTTONS (open website in new tab) ───
+      const viewProjectBtns = document.querySelectorAll('.view-project-btn');
+      viewProjectBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const projectUrl = this.getAttribute('data-project-url');
+          const projectName = this.getAttribute('data-project-name');
+          
+          if (projectUrl && projectUrl.trim() !== '' && projectUrl !== '#') {
+            // Open the project website in a new tab
+            window.open(projectUrl, '_blank');
+          } else {
+            e.preventDefault();
+            alert(`The website for "${projectName}" is coming soon. Stay tuned!`);
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>

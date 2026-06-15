@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" href="./images/logo3.png" type="image/x-icon">
+
+  <title>Codehive Online – Industries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1f3c;
+      --blue: #1a73e8;
+      --blue-dark: #1558b0;
+      --blue-light: #e8f0fb;
+      --text: #1a1a2e;
+      --muted: #4a5568;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-alt: #f8fafd;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      position: relative;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+
+    .logo-img-placeholder {
+     width: 65px;
+      height: 50px;
+      background: var(--blue-light);
+      /* border: 2px dashed var(--blue); */
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; color: var(--blue); font-weight: 700;
+      text-align: center; flex-shrink: 0;
+    }
+
+    .logo-text h2 { font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+    .logo-text p  { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 600; color: var(--muted);
+      position: relative; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { color: var(--blue); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--blue); border-radius: 2px;
+    }
+
+    .btn-primary {
+      background: var(--blue); color: #fff; border: none;
+      padding: 11px 24px; border-radius: 6px; font-size: 14px;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+
+    /* Mobile menu toggle - positioned on the left */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--navy);
+      padding: 8px;
+      z-index: 101;
+      order: -1;
+      margin-right: 12px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 52px 64px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header .label {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+    }
+
+    .page-header h1 {
+      font-size: 36px; font-weight: 800; color: var(--navy);
+      line-height: 1.15; margin-bottom: 14px;
+    }
+
+    .page-header p {
+      font-size: 14px; color: var(--muted); font-weight: 500;
+      line-height: 1.65; max-width: 480px;
+    }
+
+    /* ── INDUSTRIES GRID ── */
+    .industries-section {
+      padding: 48px 64px;
+    }
+
+    .industries-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    /* Each industry card = left content + right image */
+    .industry-card {
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .industry-card:hover { box-shadow: 0 8px 32px rgba(13,31,60,0.09); }
+
+    .industry-content {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .industry-icon {
+      width: 48px; height: 48px;
+      background: var(--blue-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .industry-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--blue); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .industry-content h3 {
+      font-size: 20px; font-weight: 800; color: var(--navy);
+      margin-bottom: 8px; line-height: 1.2;
+    }
+
+    .industry-content > p {
+      font-size: 12.5px; color: var(--muted); font-weight: 500;
+      line-height: 1.6; margin-bottom: 16px;
+    }
+
+    .industry-divider {
+      border: none; border-top: 1px solid var(--border); margin-bottom: 14px;
+    }
+
+    .industry-features {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 8px; margin-bottom: 20px; flex: 1;
+    }
+    .industry-features li {
+      font-size: 12.5px; color: var(--text); font-weight: 500;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .industry-features li::before {
+      content: '';
+      width: 17px; height: 17px; flex-shrink: 0;
+      background: var(--blue-light);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17' fill='none' stroke='%231a73e8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6.5-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 11px;
+    }
+
+    .learn-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: var(--blue);
+      text-decoration: none;
+    }
+    .learn-link:hover { text-decoration: underline; }
+
+    /* Photo side */
+    .industry-photo {
+      width: 160px;
+      background: #dce6f5;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .industry-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    /* placeholder */
+    .industry-photo-placeholder {
+      width: 100%; height: 100%;
+      background: #dce6f5;
+      border-left: 2px dashed var(--blue);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; color: var(--blue);
+      font-size: 9px; font-weight: 700; text-align: center;
+      padding: 12px;
+    }
+    .industry-photo-placeholder svg {
+      width: 28px; height: 28px;
+      stroke: var(--blue); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+      opacity: 0.5;
+    }
+
+    /* ── CONSULTATION BANNER ── */
+    .consult-banner {
+      margin: 0 64px 56px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 26px 36px;
+    }
+
+    .consult-icon {
+      width: 54px; height: 54px; flex-shrink: 0;
+      background: var(--blue); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .consult-icon svg {
+      width: 24px; height: 24px;
+      stroke: #fff; fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .consult-text { flex: 1; }
+    .consult-text h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .consult-text p  { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+    .btn-consult {
+      background: var(--blue); color: #fff; border: none;
+      padding: 12px 24px; border-radius: 8px; font-size: 14px;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      white-space: nowrap; display: flex; align-items: center; gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-consult:hover { background: var(--blue-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1f3c; color: #fff; padding: 56px 64px 0;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 200px 140px 200px 240px 160px;
+      gap: 32px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand h2 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .footer-brand .tagline { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 20px; }
+    .footer-brand .quote { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+    .footer-brand .quote-link { color: #4d9cff; text-decoration: none; font-weight: 600; }
+
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul li a {
+      font-size: 12.5px; color: rgba(255,255,255,0.55);
+      text-decoration: none; font-weight: 500; transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-list li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 500;
+    }
+    .contact-icon {
+      width: 30px; height: 30px; background: rgba(255,255,255,0.08);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-icon svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.65); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .social-icons { display: flex; gap: 8px; margin-top: 4px; }
+    .social-btn {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,0.1); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--blue); }
+    .social-btn svg { width: 15px; height: 15px; fill: #fff; }
+
+    .footer-bottom {
+      text-align: center; padding: 18px 0;
+      font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 500;
+    }
+
+    /* ── RESPONSIVE STYLES ── */
+    @media (max-width: 1024px) {
+      .page-header { padding: 48px 32px 40px; }
+      .industries-section { padding: 40px 32px; }
+      .industries-grid { grid-template-columns: 1fr; max-width: 650px; margin: 0 auto; }
+      .consult-banner { margin: 0 32px 56px; }
+      footer { padding: 48px 32px 0; }
+      .footer-top { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { 
+        padding: 0 24px; 
+        justify-content: flex-start;
+      }
+      .menu-toggle { 
+        display: block; 
+        order: -1;
+      }
+      .nav-logo {
+        order: 0;
+        margin-right: auto;
+      }
+      .nav-links {
+        position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+        background: #fff; flex-direction: column; gap: 24px;
+        padding: 32px 24px; border-bottom: 1px solid var(--border);
+        display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        overflow-y: auto; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 16px; }
+      .btn-primary { 
+        font-size: 13px; padding: 10px 20px; 
+        order: 1;
+        margin-left: auto;
+      }
+      
+      .page-header { padding: 40px 24px 32px; }
+      .page-header h1 { font-size: 28px; }
+      .industries-section { padding: 32px 24px; }
+      .industry-card { grid-template-columns: 1fr; }
+      .industry-photo { width: 100%; height: 140px; }
+      .consult-banner { flex-direction: column; text-align: center; padding: 24px; margin: 0 24px 48px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 16px; }
+      .logo-text h2 { font-size: 13px; }
+      .logo-text p { font-size: 10px; }
+      .btn-primary { padding: 8px 16px; font-size: 12px; }
+      
+      .page-header { padding: 32px 16px 28px; }
+      .page-header h1 { font-size: 24px; }
+      .page-header p { font-size: 13px; }
+      .industries-section { padding: 24px 16px; }
+      .industry-content { padding: 20px 16px; }
+      .industry-content h3 { font-size: 18px; }
+      .consult-banner { margin: 0 16px 40px; }
+      
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      footer { padding: 40px 24px 0; }
+    }
+      a {
+      text-decoration: none;
+      color: whitesmoke;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <a href="index.html" class="nav-logo">
+      <div class="logo-img-placeholder"><img class="logo-img-placeholder" src="./images/logo3.png" alt=""></div>
+      <div class="logo-text">
+        <h2>Codehive Online</h2>
+        <p>Your Business, Online.</p>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./service.html">Services</a></li>
+      <li><a href="./industries.html">Industries</a></li>
+      <li><a href="./portfolio.html">Portfolio</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+  <button class="btn-primary" id="startProjectBtn"><a href="./contact.html">Start a Project</a> </button>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="label">Industries We Serve</p>
+    <h1>Solutions for Every Industry</h1>
+    <p>We understand the unique needs of different industries and deliver web solutions that drive real impact.</p>
+  </div>
+
+  <!-- INDUSTRIES GRID -->
+  <section class="industries-section">
+    <div class="industries-grid">
+
+      <!-- Schools -->
+      <div class="industry-card">
+        <div class="industry-content">
+          <div class="industry-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3>Schools</h3>
+          <p>Websites that improve communication, share information and strengthen school communities.</p>
+          <hr class="industry-divider"/>
+          <ul class="industry-features">
+            <li>Admissions Information</li>
+            <li>Announcements</li>
+            <li>Parent Communication</li>
+            <li>Downloads &amp; Resources</li>
+          </ul>
+          <a href="./service.html" class="learn-link">Learn more &nbsp;→</a>
+        </div>
+        <div class="industry-photo">
+          <div class="industry-photo-placeholder">
+         <img  src="./images/divey.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Logistics -->
+      <div class="industry-card">
+        <div class="industry-content">
+          <div class="industry-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Logistics</h3>
+          <p>Digital solutions that showcase your services and build trust with clients.</p>
+          <hr class="industry-divider"/>
+          <ul class="industry-features">
+            <li>Service Visibility</li>
+            <li>Request a Quote</li>
+            <li>Fleet Information</li>
+            <li>Contact Forms</li>
+          </ul>
+          <a href="./service.html" class="learn-link">Learn more &nbsp;→</a>
+        </div>
+        <div class="industry-photo">
+          <div class="industry-photo-placeholder">
+        <img  src="./images/bts.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Electrical & Technical -->
+      <div class="industry-card">
+        <div class="industry-content">
+          <div class="industry-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Electrical &amp; Technical Businesses</h3>
+          <p>Websites that highlight your expertise, projects and services.</p>
+          <hr class="industry-divider"/>
+          <ul class="industry-features">
+            <li>Project Galleries</li>
+            <li>Service Pages</li>
+            <li>Quote Requests</li>
+            <li>Technical Information</li>
+          </ul>
+          <a href="./service.html" class="learn-link">Learn more &nbsp;→</a>
+        </div>
+        <div class="industry-photo">
+          <div class="industry-photo-placeholder">
+         <img  src="./images/fes.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Small Businesses -->
+      <div class="industry-card">
+        <div class="industry-content">
+          <div class="industry-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Small Businesses</h3>
+          <p>Affordable, professional websites that help small businesses grow and compete.</p>
+          <hr class="industry-divider"/>
+          <ul class="industry-features">
+            <li>Professional Presence</li>
+            <li>Lead Generation</li>
+            <li>Customer Contact</li>
+            <li>Online Growth</li>
+          </ul>
+          <a href="./service.html" class="learn-link">Learn more &nbsp;→</a>
+        </div>
+        <div class="industry-photo">
+          <div class="industry-photo-placeholder">
+  <img src="./images/burger.png" alt="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONSULTATION BANNER -->
+  <div class="consult-banner">
+    <div class="consult-icon">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="consult-text">
+      <h3>Not sure which solution fits your industry?</h3>
+      <p>Book a consultation and we'll guide you.</p>
+    </div>
+    <button class="btn-consult" id="consultBtn">Book a Consultation &nbsp;→</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+
+      <div class="footer-brand footer-col">
+        <h2>Codehive Online</h2>
+        <p class="tagline">Your Business, Online.</p>
+        <p class="quote">Don't make noise in the streets,<br>make noise <a href="#" class="quote-link">online</a>.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./service.html">Services</a></li>
+          <li><a href="./industries.html">Industries</a></li>
+          <li><a href="./portfolio.html">Portfolio</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Website Development</a></li>
+          <li><a href="#">Website Maintenance</a></li>
+          <li><a href="#">Business Branding</a></li>
+          <li><a href="#">Digital Management</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul class="contact-list">
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            codehiveonline@gmail.com
+          </li>
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+            </div>
+           +27 75 485 5409
+          </li>
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            South Africa
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#fff" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">&copy; 2025 Codehive Online. All Rights Reserved.</div>
+  </footer>
+
+  <!-- JavaScript for navbar highlighting and responsive menu -->
+  <script>
+    (function() {
+      // DOM elements
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const startProjectBtn = document.getElementById('startProjectBtn');
+      const consultBtn = document.getElementById('consultBtn');
+
+      // ─── NAVBAR PAGE HIGHLIGHTING ───
+      function highlightCurrentPage() {
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1).toLowerCase();
+        
+        const allNavLinks = document.querySelectorAll('.nav-links a');
+        
+        // Remove all active classes first
+        allNavLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        
+        // Add active class to matching link
+        allNavLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href) {
+            const linkPage = href.substring(href.lastIndexOf('/') + 1).toLowerCase();
+            
+            // Check for matches including various URL formats
+            if (currentPage === linkPage ||
+                (currentPage === '' && (linkPage === 'index.html' || linkPage === 'index')) ||
+                (currentPage === 'industries' && linkPage === 'industries') ||
+                (currentPage === 'industries.html' && (linkPage === 'industries' || linkPage === 'industries.html')) ||
+                (currentPage === 'service' && linkPage === 'service.html') ||
+                (currentPage === 'service.html' && linkPage === 'service.html') ||
+                (currentPage === 'index.html' && linkPage === 'index.html') ||
+                (currentPage === 'portfolio' && linkPage === 'portfolio') ||
+                (currentPage === 'portfolio.html' && linkPage === 'portfolio') ||
+                (currentPage === 'contact' && linkPage === 'contact') ||
+                (currentPage === 'contact.html' && linkPage === 'contact')) {
+              link.classList.add('active');
+            }
+          }
+        });
+        
+        // Fallback: if no active link found, try to highlight Industries
+        const activeLink = document.querySelector('.nav-links a.active');
+        if (!activeLink) {
+          if (currentPage.includes('industries')) {
+            const industriesLink = document.querySelector('.nav-links a[href="./industries"]') || 
+                                   document.querySelector('.nav-links a[href="industries"]');
+            if (industriesLink) {
+              industriesLink.classList.add('active');
+            }
+          } else {
+            // Default to Home
+            const homeLink = document.querySelector('.nav-links a[href="./index.html"]') || 
+                            document.querySelector('.nav-links a[href="index.html"]');
+            if (homeLink) {
+              homeLink.classList.add('active');
+            }
+          }
+        }
+      }
+      
+      // Run highlighting on page load
+      highlightCurrentPage();
+
+      // ─── RESPONSIVE MOBILE MENU ───
+      if (menuToggle && navLinks) {
+        // Toggle menu on button click
+        menuToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          navLinks.classList.toggle('open');
+          updateMenuIcon();
+        });
+
+        // Close menu when clicking a navigation link
+        const navLinkItems = navLinks.querySelectorAll('a');
+        navLinkItems.forEach(link => {
+          link.addEventListener('click', function() {
+            navLinks.classList.remove('open');
+            updateMenuIcon();
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!navLinks.contains(event.target) && event.target !== menuToggle) {
+            navLinks.classList.remove('open');
+            updateMenuIcon();
+          }
+        });
+
+        // Close menu on window resize if it becomes desktop size
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            updateMenuIcon();
+          }
+        });
+
+        // Update menu icon based on state
+        function updateMenuIcon() {
+          if (navLinks.classList.contains('open')) {
+            menuToggle.innerHTML = '✕';
+            menuToggle.setAttribute('aria-label', 'Close menu');
+          } else {
+            menuToggle.innerHTML = '☰';
+            menuToggle.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      // ─── BUTTON INTERACTIONS ───
+      if (startProjectBtn) {
+        startProjectBtn.addEventListener('click', function() {
+          alert('Project request feature coming soon! Contact us at codehiveonline@gmail.com');
+        });
+      }
+
+      if (consultBtn) {
+        consultBtn.addEventListener('click', function() {
+          alert('Consultation booking feature coming soon! Contact us at codehiveonline@gmail.com');
+        });
+      }
+
+      // ─── LEARN MORE LINKS ───
+     
+
+    })();
+  </script>
+</body>
+</html>

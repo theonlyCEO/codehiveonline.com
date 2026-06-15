@@ -1,0 +1,166 @@
+{
+  "version": 2,
+  "name": "codehive-online",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/index.html",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/contact.html",
+      "dest": "/contact.html"
+    },
+    {
+      "src": "/service.html",
+      "dest": "/service.html"
+    },
+    {
+      "src": "/industries.html",
+      "dest": "/industries.html"
+    },
+    {
+      "src": "/portfolio.html",
+      "dest": "/portfolio.html"
+    },
+    {
+      "src": "/helpdesk",
+      "dest": "/helpdesk.html"
+    },
+    {
+      "src": "/helpdesk.html",
+      "dest": "/helpdesk.html"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/images/logo3.png",
+      "dest": "/images/logo3.png",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/images/up(1).png",
+      "dest": "/images/up(1).png"
+    },
+    {
+      "src": "/images/bts.png",
+      "dest": "/images/bts.png"
+    },
+    {
+      "src": "/images/fes.png",
+      "dest": "/images/fes.png"
+    },
+    {
+      "src": "/images/divey.png",
+      "dest": "/images/divey.png"
+    },
+    {
+      "src": "/images/founder.png",
+      "dest": "/images/founder.png"
+    },
+    {
+      "src": "/images/founder3.png",
+      "dest": "/images/founder3.png"
+    },
+    {
+      "src": "/images/code.png",
+      "dest": "/images/code.png"
+    },
+    {
+      "src": "/images/wa.png",
+      "dest": "/images/wa.png"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ],
+  
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ],
+  
+  "functions": {
+    "api/server.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 10
+    }
+  },
+  
+  "env": {
+    "MONGODB_URI": "mongodb+srv://wilfredmvula:wm%4020040404@cluster0.odlvgcd.mongodb.net/codehive?retryWrites=true&w=majority"
+  },
+  
+  "ignoreCommand": "echo 'Ignoring build step for static site'",
+  
+  "github": {
+    "enabled": false,
+    "autoJobCancelation": true,
+    "silent": true
+  }
+}

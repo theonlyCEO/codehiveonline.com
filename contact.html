@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="./images/logo3.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Codehive Online – Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1f3c;
+      --blue: #1a73e8;
+      --blue-dark: #1558b0;
+      --blue-light: #e8f0fb;
+      --text: #1a1a2e;
+      --muted: #4a5568;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-alt: #f8fafd;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Scroll progress indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), #4d9cff, var(--blue));
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Floating particles background */
+    .particles-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      background: radial-gradient(circle, rgba(26,115,232,0.08) 0%, rgba(26,115,232,0) 70%);
+      border-radius: 50%;
+      animation: floatParticle 15s infinite ease-in-out;
+    }
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+      50% { transform: translateY(-30px) translateX(20px); opacity: 0.6; }
+    }
+
+    /* Animated gradient blobs */
+    .gradient-blob {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(26,115,232,0.06) 0%, rgba(26,115,232,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: blobMove 20s infinite alternate ease-in-out;
+    }
+    @keyframes blobMove {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(100px, 50px) scale(1.2); }
+    }
+
+    /* Sticky navbar with glassmorphism */
+    nav.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+      z-index: 101;
+    }
+    nav.sticky .btn-primary {
+      transform: scale(0.95);
+    }
+
+    /* Scroll reveal animation */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2,0.9,0.4,1.1), transform 0.7s cubic-bezier(0.2,0.9,0.4,1.1);
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Smooth underline animation for nav */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: width 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Button ripple effect */
+    .ripple {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Contact info item hover effect */
+    .contact-info-item {
+      transition: transform 0.3s ease, background 0.3s;
+      padding: 8px;
+      margin: -8px;
+      border-radius: 12px;
+    }
+    .contact-info-item:hover {
+      transform: translateX(8px);
+      background: rgba(26,115,232,0.04);
+    }
+
+    /* Form input focus glow */
+    .form-input {
+      transition: all 0.3s ease;
+    }
+    .form-input:focus {
+      border-color: var(--blue);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.1);
+    }
+
+    /* Send button hover effect */
+    .btn-send {
+      transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    }
+    .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(26,115,232,0.3);
+    }
+
+    /* FAQ item animation */
+    .faq-item {
+      transition: all 0.2s;
+    }
+    .faq-item:hover {
+      background: var(--bg-alt);
+    }
+
+    /* CTA banner hover effect */
+    .cta-banner {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta-banner:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(13,31,60,0.2);
+    }
+
+    /* Social buttons hover */
+    .social-btn {
+      transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    }
+    .social-btn:hover {
+      transform: translateY(-3px);
+      background: var(--blue);
+    }
+
+    /* Footer link hover */
+    .footer-col ul li a {
+      transition: all 0.2s;
+    }
+    .footer-col ul li a:hover {
+      transform: translateX(5px);
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--navy);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 1000;
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .toast.show {
+      transform: translateX(0);
+    }
+    .toast.success {
+      background: #22c55e;
+    }
+    .toast.error {
+      background: #ef4444;
+    }
+
+    /* Loading spinner */
+    .btn-send.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .btn-send.loading::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: inline-block;
+      margin-left: 8px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .scroll-reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      position: relative;
+      z-index: 100;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+    .logo-img-placeholder {
+      width: 65px;
+      height: 50px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; color: var(--blue); font-weight: 700;
+      text-align: center; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .logo-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-text h2 { font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+    .logo-text p  { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 600; color: var(--muted);
+      position: relative; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { color: var(--blue); }
+
+    .btn-primary {
+      background: var(--blue); color: #fff; border: none;
+      padding: 11px 24px; border-radius: 6px; font-size: 14px;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-primary a { color: white; text-decoration: none; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--navy);
+      padding: 8px;
+      z-index: 101;
+      order: -1;
+      margin-right: 12px;
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      padding: 60px 64px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-left h1 {
+      font-size: 36px; font-weight: 800; color: var(--navy);
+      line-height: 1.15; margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .contact-left > p {
+      font-size: 13.5px; color: var(--muted); font-weight: 500;
+      line-height: 1.65; margin-bottom: 36px;
+    }
+
+    .contact-info-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      cursor: pointer;
+    }
+
+    .info-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--blue-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .contact-info-item:hover .info-icon {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+    .contact-info-item:hover .info-icon svg {
+      stroke: white;
+    }
+    .info-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--blue); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+      transition: stroke 0.3s;
+    }
+
+    .info-text strong {
+      display: block; font-size: 12px; font-weight: 800;
+      color: var(--navy); margin-bottom: 2px;
+    }
+    .info-text span {
+      font-size: 13px; color: var(--muted); font-weight: 500; line-height: 1.5;
+    }
+
+    .contact-form {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13.5px; color: var(--text);
+      font-family: inherit; font-weight: 500;
+      background: var(--bg-alt);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    textarea.form-input {
+      resize: vertical; min-height: 120px;
+    }
+
+    .btn-send {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff; border: none;
+      padding: 13px 28px; border-radius: 8px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      font-family: inherit; align-self: flex-start;
+      transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+    }
+
+    /* ── FAQ SECTION ── */
+    .faq-section {
+      padding: 0 64px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .faq-inner {
+      margin-left: calc(340px + 64px);
+    }
+
+    .faq-section h2 {
+      font-size: 22px; font-weight: 800; color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .faq-list {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      transition: all 0.2s;
+    }
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-question {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+      padding: 18px 22px; cursor: pointer;
+      background: none; border: none; font-family: inherit;
+      font-size: 14px; font-weight: 600; color: var(--navy);
+      text-align: left; transition: background 0.2s;
+    }
+    .faq-question:hover { background: var(--bg-alt); }
+
+    .faq-chevron {
+      width: 20px; height: 20px; flex-shrink: 0;
+      stroke: var(--muted); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.25s;
+    }
+
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      font-size: 13.5px; color: var(--muted); font-weight: 500;
+      line-height: 1.65; padding: 0 22px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 22px 18px;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      margin: 0 64px 48px;
+      background: linear-gradient(135deg, var(--navy), #1a2a4a);
+      border-radius: 16px;
+      display: flex; align-items: center; gap: 20px;
+      padding: 28px 36px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: var(--blue); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+    .cta-icon svg {
+      width: 22px; height: 22px;
+      stroke: #fff; fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .cta-text { flex: 1; }
+    .cta-text h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .cta-text p  { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    .btn-cta {
+      background: var(--blue); color: #fff; border: none;
+      padding: 12px 24px; border-radius: 8px; font-size: 14px;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      white-space: nowrap; display: flex; align-items: center; gap: 8px;
+      transition: all 0.3s;
+    }
+    .btn-cta:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(26,115,232,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1f3c; color: #fff; padding: 56px 64px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 200px 140px 200px 240px 160px;
+      gap: 32px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand h2 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .footer-brand .tagline { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 500; margin-bottom: 20px; }
+    .footer-brand .quote { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+    .footer-brand .quote-link { color: #4d9cff; text-decoration: none; font-weight: 600; }
+
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul li a {
+      font-size: 12.5px; color: rgba(255,255,255,0.55);
+      text-decoration: none; font-weight: 500; transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .f-contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .f-contact-list li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 500;
+      transition: transform 0.2s;
+    }
+    .f-contact-list li:hover { transform: translateX(5px); }
+    .f-contact-icon {
+      width: 30px; height: 30px; background: rgba(255,255,255,0.08);
+      border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .f-contact-icon svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.65); fill: none; stroke-width: 1.8; }
+
+    .social-icons { display: flex; gap: 8px; margin-top: 4px; }
+    .social-btn {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,0.1); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .social-btn svg { width: 15px; height: 15px; fill: #fff; }
+
+    .footer-bottom {
+      text-align: center; padding: 18px 0;
+      font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 500;
+    }
+
+    a { text-decoration: none; color: whitesmoke; }
+
+    /* Help desk link in footer */
+    .helpdesk-link {
+      color: #4d9cff;
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE STYLES ── */
+    @media (max-width: 1024px) {
+      .contact-section { padding: 48px 32px 48px; gap: 40px; }
+      .faq-section { padding: 0 32px 48px; }
+      .faq-inner { margin-left: 0; }
+      .cta-banner { margin: 0 32px 48px; }
+      footer { padding: 48px 32px 0; }
+      .footer-top { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; justify-content: flex-start; }
+      .menu-toggle { display: block; order: -1; }
+      .nav-logo { order: 0; margin-right: auto; }
+      .nav-links {
+        position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+        background: #fff; flex-direction: column; gap: 24px;
+        padding: 32px 24px; border-bottom: 1px solid var(--border);
+        display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        overflow-y: auto; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 16px; }
+      .btn-primary { font-size: 13px; padding: 10px 20px; order: 1; margin-left: auto; }
+      
+      .contact-section { grid-template-columns: 1fr; padding: 40px 24px 40px; gap: 32px; }
+      .contact-left h1 { font-size: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+      .faq-section { padding: 0 24px 40px; }
+      .cta-banner { flex-direction: column; text-align: center; padding: 24px; margin: 0 24px 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 16px; }
+      .logo-text h2 { font-size: 13px; }
+      .logo-text p { font-size: 10px; }
+      .btn-primary { padding: 8px 16px; font-size: 12px; }
+      
+      .contact-section { padding: 32px 16px 32px; }
+      .contact-left h1 { font-size: 24px; }
+      .faq-section { padding: 0 16px 32px; }
+      .cta-banner { margin: 0 16px 32px; }
+      
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      footer { padding: 40px 24px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="particles-bg" id="particlesBg"></div>
+  <div class="gradient-blob" style="top: 10%; left: -100px;"></div>
+  <div class="gradient-blob" style="bottom: 10%; right: -100px; width: 500px; height: 500px; animation-delay: -5s;"></div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <a href="index.html" class="nav-logo">
+      <div class="logo-img-placeholder"><img src="./images/logo3.png" alt=""></div>
+      <div class="logo-text">
+        <h2>Codehive Online</h2>
+        <p>Your Business, Online.</p>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./service.html">Services</a></li>
+      <li><a href="./industries.html">Industries</a></li>
+      <li><a href="./portfolio.html">Portfolio</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <button class="btn-primary" id="startProjectBtn"><a href="./contact.html">Start a Project</a></button>
+  </nav>
+
+  <!-- CONTACT SECTION -->
+  <div class="contact-section scroll-reveal">
+    <div class="contact-left">
+      <h1>Let's Build Something Together.</h1>
+      <p>Have a project in mind? Send us a message and we'll get back to you.</p>
+
+      <ul class="contact-info-list">
+        <li class="contact-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>
+          <div class="info-text"><strong>Phone / WhatsApp</strong><span>+27 79 435 2673<br>+27 75 485 5409</span></div>
+        </li>
+        <li class="contact-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="info-text"><strong>Email</strong><span>codehiveonline@gmail.com</span></div>
+        </li>
+        <li class="contact-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="info-text"><strong>Business Hours</strong><span>Monday – Friday<br>08:00 – 17:00</span></div>
+        </li>
+        <li class="contact-info-item">
+          <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="info-text"><strong>Service Area</strong><span>South Africa</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-right">
+      <div class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" class="form-input" id="nameInput" placeholder="Name" required />
+          <input type="text" class="form-input" id="companyInput" placeholder="Company" />
+        </div>
+        <div class="form-row">
+          <input type="tel" class="form-input" id="phoneInput" placeholder="Phone" />
+          <input type="email" class="form-input" id="emailInput" placeholder="Email" required />
+        </div>
+        <textarea class="form-input" id="messageInput" placeholder="Message" required></textarea>
+        <button class="btn-send" id="sendMessageBtn">Send Message &nbsp;→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ SECTION -->
+  <div class="faq-section scroll-reveal">
+    <div class="faq-inner">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-question">How long does a website take?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer">Most websites are completed within 2–4 weeks depending on the size and complexity of the project. We'll give you a clear timeline at the start.</div></div>
+        <div class="faq-item"><button class="faq-question">How much does a website cost?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer">Pricing depends on your requirements. We offer affordable packages for small businesses, schools, and larger organisations. Contact us for a custom quote.</div></div>
+        <div class="faq-item"><button class="faq-question">Do you provide maintenance?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer">Yes. We offer ongoing maintenance plans to keep your website secure, updated, and running smoothly after launch.</div></div>
+        <div class="faq-item"><button class="faq-question">Can you redesign existing websites?<svg class="faq-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer">Absolutely. We can modernise and redesign your existing website while keeping your content and improving performance and design.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner scroll-reveal">
+    <div class="cta-icon"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
+    <div class="cta-text"><h3>Your Business, Online.</h3><p>Don't make noise in the streets, make noise online.</p></div>
+    <button class="btn-cta" id="ctaStartProjectBtn">Start a Project &nbsp;→</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand footer-col"><h2>Codehive Online</h2><p class="tagline">Your Business, Online.</p><p class="quote">Don't make noise in the streets,<br>make noise <a href="#" class="quote-link">online</a>.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="./index.html">Home</a></li><li><a href="./service.html">Services</a></li><li><a href="./industries.html">Industries</a></li><li><a href="./portfolio.html">Portfolio</a></li><li><a href="./contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Website Development</a></li><li><a href="#">Website Maintenance</a></li><li><a href="#">Business Branding</a></li><li><a href="#">Digital Management</a></li></ul></div>
+      <div class="footer-col"><h4>Contact Us</h4><ul class="f-contact-list"><li><div class="f-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>codehiveonline@gmail.com</li><li><div class="f-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg></div>+27 75 485 5409</li><li><div class="f-contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>South Africa</li></ul></div>
+      <div class="footer-col"><h4>Follow Us</h4><div class="social-icons"><a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a href="#" class="social-btn"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#fff" stroke="none"/></svg></a><a href="#" class="social-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div></div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Codehive Online. All Rights Reserved.
+      <br><br>
+      <a href="/helpdesk" class="helpdesk-link">Help Desk Dashboard</a>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const API_URL = 'https://codehive-backend-7v81.onrender.com/api';
+
+      // Scroll progress bar
+      const progressBar = document.getElementById('scrollProgress');
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (winScroll / height) * 100;
+        if(progressBar) progressBar.style.width = scrolled + '%';
+      });
+
+      // Sticky navbar
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if(window.scrollY > 50) navbar.classList.add('sticky');
+        else navbar.classList.remove('sticky');
+      });
+
+      // Scroll reveal observer
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      revealElements.forEach(el => observer.observe(el));
+
+      // Floating particles
+      const particlesContainer = document.getElementById('particlesBg');
+      if(particlesContainer) {
+        for(let i = 0; i < 20; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          const size = Math.random() * 60 + 15;
+          particle.style.width = size + 'px';
+          particle.style.height = size + 'px';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 10 + 's';
+          particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Toast notification function
+      function showToast(message, type = 'success') {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = `toast ${type}`;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      }
+
+      // Mobile menu
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      if(menuToggle && navLinks) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navLinks.classList.toggle('open');
+          menuToggle.innerHTML = navLinks.classList.contains('open') ? '✕' : '☰';
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+          link.addEventListener('click', () => { navLinks.classList.remove('open'); if(menuToggle) menuToggle.innerHTML = '☰'; });
+        });
+        document.addEventListener('click', (event) => {
+          if(!navLinks.contains(event.target) && event.target !== menuToggle) {
+            navLinks.classList.remove('open');
+            if(menuToggle) menuToggle.innerHTML = '☰';
+          }
+        });
+      }
+
+      // Navbar highlighting
+      function highlightCurrentPage() {
+        const currentPage = window.location.pathname.split('/').pop().toLowerCase() || 'index.html';
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => link.classList.remove('active'));
+        links.forEach(link => {
+          const href = link.getAttribute('href')?.toLowerCase() || '';
+          if(href === currentPage || (currentPage === 'index.html' && href === './index.html') || (currentPage === '' && href === './index.html') || (currentPage === 'contact.html' && href === './contact.html')) {
+            link.classList.add('active');
+          }
+        });
+      }
+      highlightCurrentPage();
+
+      // FAQ toggle
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          const item = this.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if(!isOpen) item.classList.add('open');
+        });
+      });
+
+      // Button alerts for project buttons
+      const startBtn = document.getElementById('startProjectBtn');
+      const ctaBtn = document.getElementById('ctaStartProjectBtn');
+      function showProjectAlert() { 
+        showToast('Please use the contact form to start a project. Our team will respond within 24 hours.', 'info');
+      }
+      if(startBtn) startBtn.addEventListener('click', showProjectAlert);
+      if(ctaBtn) ctaBtn.addEventListener('click', showProjectAlert);
+
+      // Form submission to MongoDB via API
+      const sendBtn = document.getElementById('sendMessageBtn');
+      
+      async function submitFormToAPI(formData) {
+        const response = await fetch(`${API_URL}/contacts`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.message || 'Failed to send message');
+        }
+        
+        return await response.json();
+      }
+
+      if(sendBtn) {
+        sendBtn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('nameInput')?.value.trim() || '';
+          const email = document.getElementById('emailInput')?.value.trim() || '';
+          const message = document.getElementById('messageInput')?.value.trim() || '';
+          const company = document.getElementById('companyInput')?.value.trim() || '';
+          const phone = document.getElementById('phoneInput')?.value.trim() || '';
+          
+          // Validation
+          if(!name || !email || !message) {
+            showToast('Please fill in your name, email, and message.', 'error');
+            return;
+          }
+          
+          if(!email.includes('@') || !email.includes('.')) {
+            showToast('Please enter a valid email address.', 'error');
+            return;
+          }
+          
+          // Show loading state
+          sendBtn.classList.add('loading');
+          sendBtn.disabled = true;
+          
+          try {
+            const formData = { name, email, message, company, phone };
+            const result = await submitFormToAPI(formData);
+            
+            showToast(`Thank you, ${name}! Your message has been sent. We'll get back to you soon.`, 'success');
+            
+            // Clear form
+            document.getElementById('nameInput').value = '';
+            document.getElementById('companyInput').value = '';
+            document.getElementById('phoneInput').value = '';
+            document.getElementById('emailInput').value = '';
+            document.getElementById('messageInput').value = '';
+            
+          } catch (error) {
+            console.error('Submission error:', error);
+            showToast(error.message || 'Failed to send message. Please try again later.', 'error');
+          } finally {
+            sendBtn.classList.remove('loading');
+            sendBtn.disabled = false;
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
