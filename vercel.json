@@ -1,10 +1,10 @@
 {
   "version": 2,
   "name": "codehive-online",
-  "buildCommand": "npm run build",
+  "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "devCommand": "echo 'Static site'",
+  "installCommand": "echo 'No dependencies to install'",
   
   "routes": [
     {
@@ -32,59 +32,26 @@
       "dest": "/portfolio.html"
     },
     {
-      "src": "/helpdesk",
-      "dest": "/helpdesk.html"
-    },
-    {
-      "src": "/helpdesk.html",
-      "dest": "/helpdesk.html"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/gallery.html",
+      "dest": "/gallery.html"
     },
     {
       "src": "/images/(.*)",
       "dest": "/images/$1"
     },
     {
-      "src": "/images/logo3.png",
-      "dest": "/images/logo3.png",
+      "src": "/(.*)\\.(png|jpg|jpeg|gif|svg|ico|webp)",
+      "dest": "/$1.$2",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
       }
     },
     {
-      "src": "/images/up(1).png",
-      "dest": "/images/up(1).png"
-    },
-    {
-      "src": "/images/bts.png",
-      "dest": "/images/bts.png"
-    },
-    {
-      "src": "/images/fes.png",
-      "dest": "/images/fes.png"
-    },
-    {
-      "src": "/images/divey.png",
-      "dest": "/images/divey.png"
-    },
-    {
-      "src": "/images/founder.png",
-      "dest": "/images/founder.png"
-    },
-    {
-      "src": "/images/founder3.png",
-      "dest": "/images/founder3.png"
-    },
-    {
-      "src": "/images/code.png",
-      "dest": "/images/code.png"
-    },
-    {
-      "src": "/images/wa.png",
-      "dest": "/images/wa.png"
+      "src": "/(.*)\\.(css|js)",
+      "dest": "/$1.$2",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "src": "/(.*)",
@@ -97,21 +64,17 @@
       "source": "/images/(.*)",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "image/png"
-        },
-        {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
         },
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "key": "Content-Type",
+          "value": "image/png"
         }
       ]
     },
     {
-      "source": "/(.*).html",
+      "source": "/(.*)\\.html",
       "headers": [
         {
           "key": "Cache-Control",
@@ -120,47 +83,45 @@
       ]
     },
     {
-      "source": "/api/(.*)",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+          "key": "X-Frame-Options",
+          "value": "DENY"
         },
         {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
       ]
     }
   ],
   
-  "rewrites": [
+  "redirects": [
+    {
+      "source": "/helpdesk",
+      "destination": "/contact.html",
+      "permanent": true
+    },
     {
       "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "destination": "/contact.html",
+      "permanent": true
     }
   ],
   
-  "functions": {
-    "api/server.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    }
-  },
+  "cleanUrls": true,
   
-  "env": {
-    "MONGODB_URI": "mongodb+srv://wilfredmvula:wm%4020040404@cluster0.odlvgcd.mongodb.net/codehive?retryWrites=true&w=majority"
-  },
+  "trailingSlash": false,
   
   "ignoreCommand": "echo 'Ignoring build step for static site'",
   
   "github": {
     "enabled": false,
-    "autoJobCancelation": true,
     "silent": true
   }
 }

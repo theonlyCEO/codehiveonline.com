@@ -1,0 +1,12 @@
+{
+  "name": "codehive-online",
+  "version": "1.0.0",
+  "description": "Codehive Online - Your Business, Online",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Static site - no server needed'"
+  },
+  "keywords": ["website", "business", "online"],
+  "author": "Codehive Online",
+  "license": "MIT"
+}
