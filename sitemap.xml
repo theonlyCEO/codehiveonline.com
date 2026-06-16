@@ -6,17 +6,17 @@
   
   <!-- HOMEPAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/</loc>
+    <loc>https://codehiveonline.com/</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/logo3.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/logo3.png</image:loc>
       <image:title>Codehive Online Logo</image:title>
       <image:caption>Codehive Online - Your Business, Online</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/up(1).png</image:loc>
+      <image:loc>https://codehiveonline.com/images/up(1).png</image:loc>
       <image:title>Codehive Online Hero Image</image:title>
       <image:caption>Bringing Businesses Online</image:caption>
     </image:image>
@@ -24,7 +24,7 @@
   
   <!-- INDEX.HTML -->
   <url>
-    <loc>https://codehiveonline.vercel.app/index.html</loc>
+    <loc>https://codehiveonline.com/index.html</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -32,119 +32,119 @@
   
   <!-- CONTACT PAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/contact.html</loc>
+    <loc>https://codehiveonline.com/contact.html</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/logo3.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/logo3.png</image:loc>
       <image:title>Contact Codehive Online</image:title>
     </image:image>
   </url>
   
   <!-- SERVICES PAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/service.html</loc>
+    <loc>https://codehiveonline.com/service.html</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/up(1).png</image:loc>
+      <image:loc>https://codehiveonline.com/images/up(1).png</image:loc>
       <image:title>Codehive Online Services</image:title>
     </image:image>
   </url>
   
   <!-- INDUSTRIES PAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/industries.html</loc>
+    <loc>https://codehiveonline.com/industries.html</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/divey.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/divey.png</image:loc>
       <image:title>Schools Industry Solutions</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/bts.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/bts.png</image:loc>
       <image:title>Logistics Industry Solutions</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/fes.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/fes.png</image:loc>
       <image:title>Electrical Industry Solutions</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/burger.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/burger.png</image:loc>
       <image:title>Small Business Solutions</image:title>
     </image:image>
   </url>
   
   <!-- PORTFOLIO PAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/portfolio.html</loc>
+    <loc>https://codehiveonline.com/portfolio.html</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/code.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/code.png</image:loc>
       <image:title>Portfolio Project - Codehive Work</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/bts.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/bts.png</image:loc>
       <image:title>BTS Logistics Portfolio</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/fes.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/fes.png</image:loc>
       <image:title>FES Electrical Portfolio</image:title>
     </image:image>
   </url>
   
   <!-- GALLERY PAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/gallery.html</loc>
+    <loc>https://codehiveonline.com/gallery.html</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/fes.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/fes.png</image:loc>
       <image:title>Gallery Image - FES Electrical</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/bts.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/bts.png</image:loc>
       <image:title>Gallery Image - BTS Logistics</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/burger.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/burger.png</image:loc>
       <image:title>Gallery Image - Burger Branding</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/panda.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/panda.png</image:loc>
       <image:title>Gallery Image - Panda Design</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/logo3.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/logo3.png</image:loc>
       <image:title>Gallery Image - Codehive Logo</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/health.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/health.png</image:loc>
       <image:title>Gallery Image - Health Branding</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/water.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/water.png</image:loc>
       <image:title>Gallery Image - Water Branding</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/up(1).png</image:loc>
+      <image:loc>https://codehiveonline.com/images/up(1).png</image:loc>
       <image:title>Gallery Image - Hero Visual</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://codehiveonline.vercel.app/images/divey.png</image:loc>
+      <image:loc>https://codehiveonline.com/images/divey.png</image:loc>
       <image:title>Gallery Image - Diversity School</image:title>
     </image:image>
   </url>
   
   <!-- IMAGES - BTS LOGISTICS -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/bts.png</loc>
+    <loc>https://codehiveonline.com/images/bts.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -152,7 +152,7 @@
   
   <!-- IMAGES - FES ELECTRICAL -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/fes.png</loc>
+    <loc>https://codehiveonline.com/images/fes.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -160,7 +160,7 @@
   
   <!-- IMAGES - DIVERSITY HIGH SCHOOL -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/divey.png</loc>
+    <loc>https://codehiveonline.com/images/divey.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -168,7 +168,7 @@
   
   <!-- IMAGES - CODEHIVE LOGO -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/logo3.png</loc>
+    <loc>https://codehiveonline.com/images/logo3.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -176,7 +176,7 @@
   
   <!-- IMAGES - FOUNDER 1 -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/founder.png</loc>
+    <loc>https://codehiveonline.com/images/founder.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -184,7 +184,7 @@
   
   <!-- IMAGES - FOUNDER 2 -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/founder3.png</loc>
+    <loc>https://codehiveonline.com/images/founder3.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -192,7 +192,7 @@
   
   <!-- IMAGES - CODE PROJECT -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/code.png</loc>
+    <loc>https://codehiveonline.com/images/code.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -200,7 +200,7 @@
   
   <!-- IMAGES - BURGER BRANDING -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/burger.png</loc>
+    <loc>https://codehiveonline.com/images/burger.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -208,7 +208,7 @@
   
   <!-- IMAGES - PANDA DESIGN -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/panda.png</loc>
+    <loc>https://codehiveonline.com/images/panda.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -216,7 +216,7 @@
   
   <!-- IMAGES - HEALTH BRANDING -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/health.png</loc>
+    <loc>https://codehiveonline.com/images/health.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -224,7 +224,7 @@
   
   <!-- IMAGES - WATER BRANDING -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/water.png</loc>
+    <loc>https://codehiveonline.com/images/water.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -232,7 +232,7 @@
   
   <!-- IMAGES - WA BRANDING -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/wa.png</loc>
+    <loc>https://codehiveonline.com/images/wa.png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -240,7 +240,7 @@
   
   <!-- HERO IMAGE -->
   <url>
-    <loc>https://codehiveonline.vercel.app/images/up(1).png</loc>
+    <loc>https://codehiveonline.com/images/up(1).png</loc>
     <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
