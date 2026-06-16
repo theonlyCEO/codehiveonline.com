@@ -1,0 +1,22 @@
+# robots.txt for Codehive Online
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /contact.html
+Allow: /service.html
+Allow: /industries.html
+Allow: /portfolio.html
+Allow: /gallery.html
+Allow: /images/
+
+# Disallow any admin or private directories (none exist)
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://codehiveonline.vercel.app/sitemap.xml
+
+# Crawl delay (optional - be respectful to servers)
+# Crawl-delay: 1
+
+# Specify your host (helps with duplicate content)
+Host: https://codehiveonline.vercel.app
